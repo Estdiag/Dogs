@@ -12,6 +12,7 @@ const infoApi = async () => {
     const apiInfo = await apiUrl.data.map((dog) => {
       return {
         Id: dog.id,
+        img: dog.image.url,
         name: dog.name,
         weight: dog.weight.metric,
         height: dog.height.metric,
