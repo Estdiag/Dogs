@@ -22,7 +22,7 @@ router.get(DOGS, async (req, res) => {
     );
     if (dog.length > 0) res.json(dog);
     else {
-      return res.json("No pudimos encontrar el perrito que buscas");
+      return res.status(404).json("No pudimos encontrar el perrito que buscas");
     }
   } else {
     res.status(200).send(totalDogs);

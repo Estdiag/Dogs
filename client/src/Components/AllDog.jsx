@@ -35,6 +35,7 @@ export default function AllDog() {
               img={d.img}
               temperament={d.temperament}
               weigth={d.weight}
+              key={d.Id}
             />
           );
         })}

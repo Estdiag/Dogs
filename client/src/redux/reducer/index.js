@@ -19,13 +19,13 @@ const reducer = (state = initialState, action) => {
     case GET_DOG:
       return {
         ...state,
-        dog: action.payload,
+        dogs: action.payload,
       };
 
     case CREATE_DOG:
       return {
         ...state,
-        houses: [...state.dogs, { ...action.payload }],
+        dogs: [...state.dogs, { ...action.payload }],
       };
     default:
       return {
