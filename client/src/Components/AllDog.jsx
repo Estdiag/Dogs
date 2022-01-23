@@ -1,34 +1,109 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllDogs } from "../redux/actions/index";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import "./stylesPag.css";
 import { Link } from "react-router-dom";
 import DogCard from "./DogCard.jsx";
+import { getAllDogs } from "../redux/actions/index";
 
 export default function AllDog() {
   const dispatch = useDispatch();
-  const AllDogs = useSelector((state) => state.dogs);
-
   useEffect(() => {
     dispatch(getAllDogs());
   }, []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemPerPage, setItemPerPage] = useState(8);
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(8);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(8);
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const AllDogs = useSelector((state) => state.dogs);
+  const currentItems = AllDogs.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleClick = (e) => {
+    setCurrentPage(Number(e.target.id));
+  };
+
+  const pages = [];
+  for (let i = 1; i <= Math.ceil(AllDogs.length / itemPerPage); i++) {
+    pages.push(i);
+  }
+
+  const renderPageNumbers = pages.map((n) => {
+    if (n < maxPageNumberLimit + 1 && n > minPageNumberLimit) {
+      return (
+        <li
+          key={n}
+          id={n}
+          onClick={handleClick}
+          className={currentPage == n ? "active" : null}
+        >
+          {n}
+        </li>
+      );
+    } else {
+      return null;
+    }
+  });
+  const handleNextbtn = () => {
+    setCurrentPage(currentPage + 1);
+    if (currentPage + 1 > maxPageNumberLimit) {
+      setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+      setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+    }
+  };
+  const handlePrevbtn = () => {
+    setCurrentPage(currentPage - 1);
+    if ((currentPage - 1) % pageNumberLimit === 0) {
+      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+    }
+  };
+
+  let pageIncrementBtn = null;
+  if (pages.length > maxPageNumberLimit) {
+    pageIncrementBtn = <li onClick={handleNextbtn}>&hellip;</li>;
+  }
+
+  let pageDecrementBtn = null;
+  if (pages.length > maxPageNumberLimit) {
+    pageDecrementBtn = <li onClick={handlePrevbtn}>&hellip;</li>;
+  }
+
   return (
-    <>
-      <div>
-        <select>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
-        <select>
-          <option value="temp">Temperamento</option>
-          <option value="raza">Raza</option>
-        </select>
-      </div>
+    <div>
       <Link to="/create">
         <button>Registrar una nueva raza</button>
       </Link>
-      {AllDogs &&
-        AllDogs.map((d) => {
+
+      <ul className="pageNumbers">
+        <li>
+          <button
+            onClick={handlePrevbtn}
+            disabled={currentPage == pages[0] ? true : false}
+          >
+            Prev
+          </button>
+        </li>
+        {pageDecrementBtn}
+        {renderPageNumbers}
+        {pageIncrementBtn}
+        <li>
+          <button
+            onClick={handleNextbtn}
+            disabled={currentPage == pages[pages.length - 1] ? true : false}
+          >
+            Next
+          </button>
+        </li>
+      </ul>
+
+      {currentItems &&
+        currentItems.map((d) => {
           return (
             <DogCard
               name={d.name}
@@ -39,37 +114,7 @@ export default function AllDog() {
             />
           );
         })}
-    </>
+      <ul className="pageNumbers">{renderPageNumbers}</ul>
+    </div>
   );
 }
-
-// export class AllDog extends Component {
-//   componentDidMount() {
-//     getAllDogs();
-//   }
-
-//   render() {
-//     return (
-//       <>
-//         <h1>Todos los perros</h1>
-//         {this.props.dogs?.map((d) => (
-//           <DogCard Raza={d.name} Temperamento={d.temperament} Peso={d.weigth} />
-//         ))}
-//       </>
-//     );
-//   }
-// }
-
-// export function mapStateToProps(state) {
-//   return {
-//     dogs: state.dogs,
-//   };
-// }
-
-// export function mapDispatchToProps(dispatch) {
-//   return {
-//     getAllDogs: () => dispatch(getAllDogs()),
-//   };
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AllDog);

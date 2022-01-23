@@ -11,26 +11,3 @@ export default function DogCard({ img, name, temperament, weigth }) {
     </div>
   );
 }
-
-// export class DogCard extends Component {
-//   componentDidMount() {
-//     getAllDogs();
-//   }
-//   render() {
-//     return (
-//       <>
-//         <h1>Raza: {this.props.name}</h1>
-//         <h2>Temperamento: {this.props.temperament}</h2>
-//         <h2>Peso: {this.props.weigth}</h2>
-//       </>
-//     );
-//   }
-// }
-
-// export const mapDispatchToProps = (distpach) => {
-//   return {
-//     getAllDogs: () => distpach(getAllDogs()),
-//   };
-// };
-
-// export default connect(null, mapDispatchToProps)(DogCard);

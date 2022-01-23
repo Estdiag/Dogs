@@ -15,6 +15,7 @@ function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getDog(name));
+    setName("");
   };
 
   return (

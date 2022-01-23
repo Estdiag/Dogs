@@ -1,6 +1,7 @@
 export const GET_ALL_DOGS = "GET_ALL_DOGS";
 export const CREATE_DOG = "CREATE_DOG";
 export const GET_DOG = "GET_DOG";
+export const PAGINATION = "PAGINATION";
 
 export function getAllDogs() {
   return function (dispatch) {

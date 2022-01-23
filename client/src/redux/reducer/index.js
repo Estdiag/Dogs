@@ -27,6 +27,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         dogs: [...state.dogs, { ...action.payload }],
       };
+
     default:
       return {
         ...state,
