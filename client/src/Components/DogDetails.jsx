@@ -21,9 +21,13 @@ export default function DogDetails() {
       <img src={dog.img} alt={`imagen de un ${dog.name}`} />
       <h1> {dog.name}</h1>
       <h2>Temperamento: {dog.temperament}</h2>
-      <h2>Peso: {dog.weight} KG</h2>
-      <h2>Altura: {dog.height} CM</h2>
-      <h2>Años de vida: {dog.life_span}</h2>
+      <h2>
+        Peso: {dog.weightMin} - {dog.weightMax} KG
+      </h2>
+      <h2>
+        Altura: {dog.heightMin} - {dog.heightMax} M
+      </h2>
+      <h2>Tiempo de vida: {dog.life_span}</h2>
       <Link to="/home">
         <button>Atras</button>
       </Link>

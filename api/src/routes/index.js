@@ -50,13 +50,25 @@ router.get(TEMPERAMENT, async (req, res) => {
 });
 
 router.post(DOGS, async (req, res) => {
-  const { name, height, weight, life_span, temperament } = req.body;
+  const {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    life_span,
+    img,
+    temperament,
+  } = req.body;
   try {
     let newDog = await Dog.create({
       name,
-      height,
-      weight,
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
       life_span,
+      img,
     });
 
     newDog.addTemperament(

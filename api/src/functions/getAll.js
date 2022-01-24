@@ -10,12 +10,17 @@ const infoApi = async () => {
       `https://api.thedogapi.com/v1/breeds?api_key=${api_key}`
     );
     const apiInfo = await apiUrl.data.map((dog) => {
+      const weight1 = dog.weight.metric?.replace(/\s+/g, "").split("-");
+      const height1 = dog.height.metric?.replace(/\s+/g, "").split("-");
+
       return {
         Id: dog.id,
         img: dog.image.url,
         name: dog.name,
-        weight: dog.weight.metric,
-        height: dog.height.metric,
+        weightMin: weight1[0],
+        weightMax: weight1[1],
+        heightMin: height1[0],
+        heightMax: height1[1],
         life_span: dog.life_span,
         temperament: dog.temperament,
       };

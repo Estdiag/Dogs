@@ -89,7 +89,9 @@ export default function AllDog() {
               name={d.name}
               img={d.img}
               temperament={d.temperament}
-              weigth={d.weight}
+              temperaments={d.temperaments}
+              weightMin={d.weightMin}
+              weightMax={d.weightMax}
               key={d.Id}
             />
           );
