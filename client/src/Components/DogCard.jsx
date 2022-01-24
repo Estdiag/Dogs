@@ -1,11 +1,14 @@
 import React from "react";
 import "./styles.module.css";
+import { Link } from "react-router-dom";
 
-export default function DogCard({ img, name, temperament, weigth }) {
+export default function DogCard({ Id, img, name, temperament, weigth }) {
   return (
     <div className="card">
       <img src={img} alt="imagen de un perro" />
-      <h1>Raza: {name}</h1>
+      <Link to={`/dogDetail/${Id}`}>
+        <h1> {name}</h1>
+      </Link>
       <h2>Temperamento: {temperament}</h2>
       <h2>Peso: {weigth}</h2>
     </div>

@@ -1,9 +1,10 @@
 export const GET_ALL_DOGS = "GET_ALL_DOGS";
 export const CREATE_DOG = "CREATE_DOG";
 export const GET_DOG = "GET_DOG";
-export const PAGINATION = "PAGINATION";
+export const FILTER = "FILTER";
+export const GET_ID_DOG = "GET_ID_DOG";
 
-export function getAllDogs() {
+export function getAllDogs(data) {
   return function (dispatch) {
     return fetch(`http://localhost:3001/dogs`)
       .then((responde) => responde.json())
@@ -15,6 +16,17 @@ export function getDog(name) {
     return fetch(`http://localhost:3001/dogs?name=${name}`)
       .then((response) => response.json())
       .then((dog) => dispatch({ type: "GET_DOG", payload: dog }));
+  };
+}
+export function filter(data) {
+  return { type: "FILTER", payload: data };
+}
+
+export function getIdDog(id) {
+  return function (dispatch) {
+    return fetch(`http://localhost:3001/dogs/${id}`)
+      .then((response) => response.json())
+      .then((dog) => dispatch({ type: "GET_ID_DOG", payload: dog }));
   };
 }
 

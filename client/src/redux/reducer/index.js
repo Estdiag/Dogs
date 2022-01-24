@@ -1,6 +1,8 @@
 import { GET_ALL_DOGS } from "../actions/index";
 import { GET_DOG } from "../actions/index";
+import { FILTER } from "../actions/index";
 import { CREATE_DOG } from "../actions/index";
+import { GET_ID_DOG } from "../actions/index";
 
 const initialState = {
   dogs: [],
@@ -20,6 +22,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dogs: action.payload,
+      };
+    case FILTER:
+      return {
+        ...state,
+        dogs: [...action.payload],
+      };
+
+    case GET_ID_DOG:
+      return {
+        ...state,
+        dog: action.payload,
       };
 
     case CREATE_DOG:

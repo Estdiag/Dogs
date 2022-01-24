@@ -5,6 +5,7 @@ import "./stylesPag.css";
 import { Link } from "react-router-dom";
 import DogCard from "./DogCard.jsx";
 import { getAllDogs } from "../redux/actions/index";
+import Order from "./Order";
 
 export default function AllDog() {
   const dispatch = useDispatch();
@@ -80,6 +81,19 @@ export default function AllDog() {
         <button>Registrar una nueva raza</button>
       </Link>
 
+      {currentItems &&
+        currentItems.map((d) => {
+          return (
+            <DogCard
+              Id={d.Id}
+              name={d.name}
+              img={d.img}
+              temperament={d.temperament}
+              weigth={d.weight}
+              key={d.Id}
+            />
+          );
+        })}
       <ul className="pageNumbers">
         <li>
           <button
@@ -101,20 +115,6 @@ export default function AllDog() {
           </button>
         </li>
       </ul>
-
-      {currentItems &&
-        currentItems.map((d) => {
-          return (
-            <DogCard
-              name={d.name}
-              img={d.img}
-              temperament={d.temperament}
-              weigth={d.weight}
-              key={d.Id}
-            />
-          );
-        })}
-      <ul className="pageNumbers">{renderPageNumbers}</ul>
     </div>
   );
 }
