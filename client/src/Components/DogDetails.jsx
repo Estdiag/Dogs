@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIdDog } from "../redux/actions/index";
 import { Link, useParams } from "react-router-dom";
@@ -27,7 +26,9 @@ export default function DogDetails() {
       <h2>
         Altura: {dog.heightMin} - {dog.heightMax} M
       </h2>
-      <h2>Tiempo de vida: {dog.life_span}</h2>
+      <h2>
+        Tiempo de vida: {dog.lifeSpanMin} - {dog.lifeSpanMax}
+      </h2>
       <Link to="/home">
         <button>Atras</button>
       </Link>

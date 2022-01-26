@@ -44,7 +44,17 @@ router.get(`${DOGS}/:id`, async (req, res) => {
 });
 
 router.get(TEMPERAMENT, async (req, res) => {
-  temperApi();
+  const data = await temperApi();
+  const unique = [...new Set(data)];
+
+  data.forEach((e) => {
+    if (e) {
+      Temperament.findOrCreate({
+        where: { name: e },
+      });
+    }
+  });
+
   const allTemperament = await Temperament.findAll();
   res.send(allTemperament);
 });
@@ -52,25 +62,28 @@ router.get(TEMPERAMENT, async (req, res) => {
 router.post(DOGS, async (req, res) => {
   const {
     name,
-    heightMin,
-    heightMax,
     weightMin,
     weightMax,
-    life_span,
+    heightMin,
+    heightMax,
+    lifeSpanMin,
+    lifeSpanMax,
     img,
     temperament,
   } = req.body;
   try {
     let newDog = await Dog.create({
       name,
-      heightMin,
-      heightMax,
       weightMin,
       weightMax,
-      life_span,
+      heightMin,
+      heightMax,
+      lifeSpanMin,
+      lifeSpanMax,
       img,
+      temperament,
     });
-
+    console.log(newDog);
     newDog.addTemperament(
       await Temperament.findAll({
         where: { name: temperament },
@@ -78,7 +91,7 @@ router.post(DOGS, async (req, res) => {
     );
     res.status(202).send("Perrito creado exitosamente");
   } catch (err) {
-    res.send(`No se pudo guardar la información, ${err}`);
+    res.status(404).send(`No se pudo guardar la información, ${err}`);
   }
 });
 module.exports = router;

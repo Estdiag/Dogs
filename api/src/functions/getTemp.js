@@ -10,19 +10,15 @@ const temperApi = async () => {
   const apiTemp = apiUrl.data.map((t) => t.temperament?.replace(/\s+/g, ""));
 
   const tempeEach = apiTemp.map((element) => {
+    const array = [];
     if (element) {
       let w = element.split(",");
-      for (let i = 0; i < w.length; i++) return w[i];
+      for (let i = 0; i < w.length; i++) array.push(w[i]);
     }
+    return array;
   });
-  console.log(tempeEach.length);
-  tempeEach.forEach((e) => {
-    if (e) {
-      Temperament.findOrCreate({
-        where: { name: e },
-      });
-    }
-  });
+
+  return tempeEach.flat();
 };
 module.exports = {
   temperApi,

@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./stylesPag.css";
 import { Link } from "react-router-dom";
 import DogCard from "./DogCard.jsx";
-import { getAllDogs } from "../redux/actions/index";
-import Order from "./Order";
+import { getAllDogs, getTemperaments } from "../redux/actions/index";
 
 export default function AllDog() {
   const dispatch = useDispatch();
@@ -23,6 +22,7 @@ export default function AllDog() {
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
   const AllDogs = useSelector((state) => state.dogs);
+
   const currentItems = AllDogs.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleClick = (e) => {
@@ -50,6 +50,9 @@ export default function AllDog() {
       return null;
     }
   });
+  const handleTemperaments = () => {
+    dispatch(getTemperaments());
+  };
   const handleNextbtn = () => {
     setCurrentPage(currentPage + 1);
     if (currentPage + 1 > maxPageNumberLimit) {
@@ -78,7 +81,7 @@ export default function AllDog() {
   return (
     <div>
       <Link to="/create">
-        <button>Registrar una nueva raza</button>
+        <button onClick={handleTemperaments}>Registrar una nueva raza</button>
       </Link>
 
       {currentItems &&
@@ -89,7 +92,6 @@ export default function AllDog() {
               name={d.name}
               img={d.img}
               temperament={d.temperament}
-              temperaments={d.temperaments}
               weightMin={d.weightMin}
               weightMax={d.weightMax}
               key={d.Id}

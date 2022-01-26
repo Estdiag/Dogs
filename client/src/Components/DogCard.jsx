@@ -9,7 +9,6 @@ export default function DogCard({
   temperament,
   weightMin,
   weightMax,
-  temperaments,
 }) {
   return (
     <div className="card">
