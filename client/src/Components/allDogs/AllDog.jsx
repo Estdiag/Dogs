@@ -2,14 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./stylesPag.css";
-import { Link } from "react-router-dom";
-import DogCard from "./DogCard.jsx";
-import { getAllDogs, getTemperaments } from "../redux/actions/index";
+import DogCard from "./DogCard";
+import { getAllDogs, getTemperaments } from "../../redux/actions/index";
 
 export default function AllDog() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllDogs());
+    dispatch(getTemperaments());
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -80,10 +80,6 @@ export default function AllDog() {
 
   return (
     <div>
-      <Link to="/create">
-        <button onClick={handleTemperaments}>Registrar una nueva raza</button>
-      </Link>
-
       {currentItems &&
         currentItems.map((d) => {
           return (

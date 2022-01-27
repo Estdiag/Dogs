@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filter } from "../redux/actions";
+import { order } from "../../redux/actions/index";
 
 function OrderWeight() {
   const data = useSelector((state) => state.dogs);
@@ -14,14 +14,14 @@ function OrderWeight() {
         var weightB = b.weightMax;
         return weightA < weightB ? -1 : weightA > weightB ? 1 : 0;
       });
-      dispatch(filter(higher.reverse()));
+      dispatch(order(higher.reverse()));
     } else if (e.target.value === "handleFilterLess") {
       const less = data.sort(function (a, b) {
         var weightA = a.weightMin;
         var weightB = b.weightMin;
         return weightA < weightB ? -1 : weightA > weightB ? 1 : 0;
       });
-      dispatch(filter(less));
+      dispatch(order(less));
     } else return null;
   };
 

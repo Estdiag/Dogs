@@ -8,7 +8,6 @@ export default class ErrorBoundary extends React.Component {
   componentDidCatch(error, info) {
     this.setState({ errorOccurred: true });
   }
-
   render() {
     return this.state.errorOccurred ? (
       <h1>Pagina no encontrada</h1>

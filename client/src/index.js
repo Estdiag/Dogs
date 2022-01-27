@@ -1,22 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+//import "./Components/styles/global.gcss";
 import App from "./App";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+
 import store from "./redux/store/index";
 import reportWebVitals from "./reportWebVitals";
-import ErrorBoundary from "./Components/ErrorBoundary";
+import ErrorBoundary from "./Components/error/ErrorBoundary";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
-      </React.StrictMode>
-    </BrowserRouter>
+    <React.StrictMode>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </React.StrictMode>
   </Provider>,
   document.getElementById("root")
 );

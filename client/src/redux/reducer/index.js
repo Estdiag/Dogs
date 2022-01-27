@@ -1,8 +1,14 @@
-import { GET_ALL_DOGS } from "../actions/index";
-import { GET_DOG } from "../actions/index";
-import { FILTER } from "../actions/index";
-import { GET_ID_DOG } from "../actions/index";
-import { GET_TEMPERAMENTS } from "../actions/index";
+import {
+  FILTER,
+  GET_ALL_DOGS,
+  GET_DOG,
+  ORDER,
+  GET_ID_DOG,
+  GET_TEMPERAMENTS,
+  GET_DOGS_API,
+  GET_DOGS_DB,
+  GET_DOG_TEMPERAMENT,
+} from "../actions/index";
 
 const initialState = {
   dogs: [],
@@ -17,11 +23,33 @@ const reducer = (state = initialState, action) => {
         ...state,
         dogs: action.payload,
       };
+    case GET_DOGS_API:
+      return {
+        ...state,
+        dogs: action.payload,
+      };
+    case GET_DOGS_DB:
+      return {
+        ...state,
+        dogs: action.payload,
+      };
 
     case GET_DOG:
       return {
         ...state,
         dogs: action.payload,
+      };
+
+    case GET_DOG_TEMPERAMENT:
+      return {
+        ...state,
+        dogs: action.payload,
+      };
+
+    case ORDER:
+      return {
+        ...state,
+        dogs: [...action.payload],
       };
     case FILTER:
       return {

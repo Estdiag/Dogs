@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const { getAllInfo } = require("../functions/getAll.js");
+const { getAllInfo, infoApi, infoDb } = require("../functions/getAll.js");
 const { temperApi } = require("../functions/getTemp");
 const { Temperament } = require("../db");
 const { Dog } = require("../db");
@@ -15,6 +15,7 @@ let TEMPERAMENT = "/temperament";
 
 router.get(DOGS, async (req, res) => {
   const { name } = req.query;
+
   const totalDogs = await getAllInfo();
   if (name) {
     let dog = totalDogs.filter((d) =>
@@ -26,6 +27,40 @@ router.get(DOGS, async (req, res) => {
     }
   } else {
     res.status(200).send(totalDogs);
+  }
+});
+
+router.get(`${DOGS}/temperament`, async (req, res) => {
+  const { temperament } = req.query;
+  const totalDogs = await getAllInfo();
+  if (temperament) {
+    let dog = totalDogs.filter((d) =>
+      d.temperament.toUpperCase().includes(temperament.toUpperCase())
+    );
+    if (dog.length > 0) res.json(dog);
+    else {
+      return res.status(404).json("sin resultado");
+    }
+  } else {
+    res.status(200).send(totalDogs);
+  }
+});
+
+router.get(`${DOGS}/api`, async (req, res) => {
+  try {
+    const dogsApi = await infoApi();
+    res.status(202).send(dogsApi);
+  } catch (err) {
+    return res.status(404).send(err);
+  }
+});
+
+router.get(`${DOGS}/db`, async (req, res) => {
+  try {
+    const dogsdDb = await infoDb();
+    res.status(202).send(dogsdDb);
+  } catch (err) {
+    return res.status(404).send(err);
   }
 });
 

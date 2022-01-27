@@ -35,7 +35,7 @@ const infoApi = async () => {
 
     return apiInfo;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 };
 
@@ -63,4 +63,6 @@ async function getAllInfo() {
 
 module.exports = {
   getAllInfo,
+  infoApi,
+  infoDb,
 };

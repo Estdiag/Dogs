@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getDog } from "../redux/actions/index";
+import { getDog } from "../../redux/actions/index";
+import s from "./stylesSearch.module.css";
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div className={`${s.searchbar}`}>
       <input
         type={"text"}
         placeholder="Buscar..."

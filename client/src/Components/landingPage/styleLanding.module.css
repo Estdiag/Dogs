@@ -1,0 +1,41 @@
+.contenedor {
+  background-image: url("dogs.jpg");
+  opacity: 0.6;
+  background-size: cover;
+  width: 100%;
+  position: relative;
+  height: 100vh;
+}
+.h1 {
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  color: rgb(72, 52, 52);
+  font-size: 45px;
+}
+.h1:hover {
+  -webkit-transform: rotateY(180deg);
+  -webkit-transform-style: preserve-3d;
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+}
+
+.button {
+  position: absolute;
+  margin: 350px 0 0 -50px;
+  top: 0.3rem;
+  left: 50%;
+  font-size: 1.3rem;
+  right: 0.3rem;
+  width: 50px;
+  height: auto;
+}
+
+.button:hover {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  box-shadow: 0px 0px 15px 15px rgb(255, 176, 133);
+  -webkit-box-shadow: 0px 0px 15px 15px rgb(255, 176, 133);
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}

@@ -2,15 +2,34 @@ import axios from "axios";
 export const GET_ALL_DOGS = "GET_ALL_DOGS";
 export const CREATE_DOG = "CREATE_DOG";
 export const GET_DOG = "GET_DOG";
-export const FILTER = "FILTER";
+export const ORDER = "ORDER";
 export const GET_ID_DOG = "GET_ID_DOG";
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
+export const FILTER = "FILTER";
+export const GET_DOGS_API = "GET_DOGS_API";
+export const GET_DOGS_DB = "GET_DOGS_DB";
+export const GET_DOG_TEMPERAMENT = "GET_DOG_TEMPERAMENT";
 
 export function getAllDogs() {
   return function (dispatch) {
     return fetch(`http://localhost:3001/dogs`)
       .then((responde) => responde.json())
       .then((get) => dispatch({ type: "GET_ALL_DOGS", payload: get }));
+  };
+}
+export function getDogsApi() {
+  return function (dispatch) {
+    return fetch(`http://localhost:3001/dogs/api`)
+      .then((responde) => responde.json())
+      .then((get) => dispatch({ type: "GET_DOGS_API", payload: get }));
+  };
+}
+
+export function getDogsDb() {
+  return function (dispatch) {
+    return fetch(`http://localhost:3001/dogs/db`)
+      .then((responde) => responde.json())
+      .then((get) => dispatch({ type: "GET_DOGS_DB", payload: get }));
   };
 }
 export function getTemperaments() {
@@ -26,6 +45,18 @@ export function getDog(name) {
       .then((response) => response.json())
       .then((dog) => dispatch({ type: "GET_DOG", payload: dog }));
   };
+}
+export function getDogTemp(temperament) {
+  return function (dispatch) {
+    return fetch(
+      `http://localhost:3001/dogs/temperament?temperament=${temperament}`
+    )
+      .then((response) => response.json())
+      .then((dog) => dispatch({ type: "GET_DOG_TEMPERAMENT", payload: dog }));
+  };
+}
+export function order(data) {
+  return { type: "ORDER", payload: data };
 }
 export function filter(data) {
   return { type: "FILTER", payload: data };

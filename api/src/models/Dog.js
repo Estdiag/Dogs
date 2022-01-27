@@ -45,9 +45,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: true,
-      createdAd: true,
-      updatedAd: false,
+      timestamps: false,
     }
   );
 };

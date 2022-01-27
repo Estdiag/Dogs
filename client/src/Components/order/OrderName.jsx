@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filter } from "../redux/actions";
+import { order } from "../../redux/actions/index";
 
 export default function OrderName() {
   const data = useSelector((state) => state.dogs);
@@ -15,7 +15,7 @@ export default function OrderName() {
         return textA < textB ? -1 : textA > textB ? 1 : 0;
       });
 
-      dispatch(filter(ascendente));
+      dispatch(order(ascendente));
     } else if (e.target.value === "handleFilterDes") {
       const ascendente = data.sort(function (a, b) {
         var textA = a.name;
@@ -24,7 +24,7 @@ export default function OrderName() {
       });
 
       let descendente = ascendente.reverse();
-      dispatch(filter(descendente));
+      dispatch(order(descendente));
     } else return null;
   };
 

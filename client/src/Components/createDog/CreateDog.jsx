@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createDog, getTemperaments } from "../redux/actions/index";
+import { createDog, getTemperaments } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "./Form";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ const CreateDog = () => {
     dispatch(getTemperaments());
   }, []);
 
+  const [error, setError] = useState("");
   let [state, setState] = useState({
     name: "",
     weightMin: "",
@@ -38,7 +39,82 @@ const CreateDog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createDog(state));
+    if (state.name === "") {
+      setError(`El campo name es obligatorio`);
+      return null;
+    }
+    if (state.weightMin === "") {
+      setError(`El campo weightMin es obligatorio`);
+      return null;
+    }
+    if (state.weightMin < 0) {
+      setError(`El campo weightMin no puede ser menor que 0`);
+      return null;
+    }
+    if (state.weightMax === "") {
+      setError(`El campo weightMax es obligatorio`);
+      return null;
+    }
+    if (parseInt(state.weightMin) > parseInt(state.weightMax)) {
+      setError("El peso minimo no puede ser mayor que el peso maximo");
+      return null;
+    }
+    if (state.heightMin === "") {
+      setError(`El campo heightMin es obligatorio`);
+      return null;
+    }
+    if (state.heightMin < 0) {
+      setError(`El campo heightMin no puede ser menor que 0`);
+      return null;
+    }
+    if (state.heightMax === "") {
+      setError(`El campo heightMax es obligatorio`);
+      return null;
+    }
+    if (parseInt(state.heightMin) > parseInt(state.heightMax)) {
+      setError("la altura minima no puede ser mayor que la altura maxima");
+      return null;
+    }
+    if (state.lifeSpanMin === "") {
+      setError(`El campo lifeSpanMin es obligatorio`);
+      return null;
+    }
+    if (state.lifeSpanMin < 0) {
+      setError(`El campo lifeSpanMin no puede ser menor que 0`);
+      return null;
+    }
+    if (state.lifeSpanMax === "") {
+      setError(`El campo lifeSpanMax es obligatorio`);
+      return null;
+    }
+    if (parseInt(state.lifeSpanMin) > parseInt(state.lifeSpanMax)) {
+      setError(
+        "la esperanza de vida minima no puede ser mayor que la esperanza de vida maxima"
+      );
+      return null;
+    }
+    if (state.temperament.length === 0) {
+      setError("Debe agregar al menos un temperamento");
+      return null;
+    }
+    if (state.img === "") {
+      setError("agregue una imagen");
+      return null;
+    } else {
+      setError("");
+      dispatch(createDog(state));
+      setState({
+        name: "",
+        weightMin: "",
+        weightMax: "",
+        heightMin: "",
+        heightMax: "",
+        lifeSpanMin: "",
+        lifeSpanMax: "",
+        img: "",
+        temperament: [],
+      });
+    }
   };
 
   return (
@@ -52,6 +128,7 @@ const CreateDog = () => {
           name="name"
           onChange={(e) => handleChange(e)}
         />
+
         <Form
           label="Mixinum weight"
           placeholder="mixinum weight"
@@ -60,6 +137,7 @@ const CreateDog = () => {
           name="weightMin"
           onChange={(e) => handleChange(e)}
         />
+
         <Form
           label="Mixinum weight"
           placeholder="mixinum weight"
@@ -68,6 +146,7 @@ const CreateDog = () => {
           name="weightMax"
           onChange={(e) => handleChange(e)}
         />
+
         <Form
           label="Minimun height "
           placeholder="Minimun height"
@@ -76,6 +155,7 @@ const CreateDog = () => {
           value={state.heightMin}
           onChange={(e) => handleChange(e)}
         />
+
         <Form
           label="Maximum height"
           placeholder="maximum height"
@@ -93,6 +173,7 @@ const CreateDog = () => {
           name="lifeSpanMin"
           onChange={(e) => handleChange(e)}
         />
+
         <Form
           label="Life span max"
           placeholder="life span max"
@@ -101,6 +182,7 @@ const CreateDog = () => {
           name="lifeSpanMax"
           onChange={(e) => handleChange(e)}
         />
+
         <label>
           Temperaments
           <select
@@ -118,6 +200,10 @@ const CreateDog = () => {
             })}
           </select>
         </label>
+        <br />
+        {state.temperament.map((t, index) => {
+          return <span key={index}> {t}, </span>;
+        })}
 
         <Form
           label="Image"
@@ -127,6 +213,7 @@ const CreateDog = () => {
           name="img"
           onChange={(e) => handleChange(e)}
         />
+        {!error ? null : <span>{error}</span>}
         <Link to="/home">
           <button>Cancelar</button>
         </Link>
