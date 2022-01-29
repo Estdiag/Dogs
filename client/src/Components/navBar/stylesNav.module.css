@@ -1,0 +1,30 @@
+.nav {
+  background-color: var(--color-backgroup);
+  display: flex;
+  justify-content: space-around;
+  /* width: 100%; */
+}
+.nav:link {
+  font-size: 30px;
+  color: inherit;
+  text-decoration: inherit;
+}
+.img {
+  position: absolute;
+  margin: 35px 0 0 -50px;
+  left: 50%;
+  right: 0.3rem;
+  bottom: 35.8rem;
+  width: 50px;
+  height: 50px;
+}
+
+.out {
+  position: absolute;
+  margin: 35px 0 0 -50px;
+  /* left: 50%; */
+  right: 0.3rem;
+  bottom: 35.8rem;
+  width: 50px;
+  height: 50px;
+}

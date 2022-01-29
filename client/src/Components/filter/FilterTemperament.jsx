@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDogTemp } from "../../redux/actions/index";
+import s from "./stylesFilter.module.css";
 
 function FilterTemperament() {
   const temperaments = useSelector((state) => state.temperaments);
@@ -8,15 +9,19 @@ function FilterTemperament() {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    dispatch(getDogTemp(e.target.value));
+    if (e.target.value !== null) {
+      dispatch(getDogTemp(e.target.value));
+    } else {
+      return null;
+    }
   };
 
   return (
-    <>
+    <div className={`${s.div}`}>
       <label>
-        Filtrar por temperamento
-        <select onChange={handleChange}>
-          <option>Seleccionar</option>
+        Filter by temperament
+        <select onChange={handleChange} className={`${s.select}`}>
+          <option>Select</option>
           {temperaments.map((t) => {
             return (
               <option key={t.id} value={t.name}>
@@ -26,7 +31,7 @@ function FilterTemperament() {
           })}
         </select>
       </label>
-    </>
+    </div>
   );
 }
 

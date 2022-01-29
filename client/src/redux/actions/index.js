@@ -2,7 +2,7 @@ import axios from "axios";
 export const GET_ALL_DOGS = "GET_ALL_DOGS";
 export const CREATE_DOG = "CREATE_DOG";
 export const GET_DOG = "GET_DOG";
-export const ORDER = "ORDER";
+export const SORT = "SORT";
 export const GET_ID_DOG = "GET_ID_DOG";
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const FILTER = "FILTER";
@@ -55,8 +55,8 @@ export function getDogTemp(temperament) {
       .then((dog) => dispatch({ type: "GET_DOG_TEMPERAMENT", payload: dog }));
   };
 }
-export function order(data) {
-  return { type: "ORDER", payload: data };
+export function sort(data) {
+  return { type: "SORT", payload: data };
 }
 export function filter(data) {
   return { type: "FILTER", payload: data };

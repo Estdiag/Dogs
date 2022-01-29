@@ -1,15 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap");
 :root {
   --color-letter-title: rgb(72, 52, 52);
   --color-letter-subtitle: rgb(107, 79, 79);
 
   --color-backgroup-button: rgb(238, 195, 115);
+  --color-backgroup: rgb(255, 176, 133);
 }
 body {
   margin: 0;
-  font-family: "Fredoka One", cursive;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Dongle", sans-serif;
 }
 
 code {

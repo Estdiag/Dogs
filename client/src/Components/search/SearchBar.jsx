@@ -8,26 +8,21 @@ function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
-  const handleInputChange = (event) => {
-    event.preventDefault();
-    setName(event.target.value);
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getDog(name));
+    setName("");
   };
 
   return (
     <div className={`${s.searchbar}`}>
-      <input
-        type={"text"}
-        placeholder="Buscar..."
-        onChange={(e) => handleInputChange(e)}
-      />
-      <button type="submit" onClick={(e) => handleSubmit(e)}>
-        Buscar
-      </button>
+      <input value={name} onChange={(e) => handleInputChange(e)} />
+      <button onClick={(e) => handleSubmit(e)}>Search</button>
     </div>
   );
 }

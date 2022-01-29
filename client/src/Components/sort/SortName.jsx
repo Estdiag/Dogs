@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { order } from "../../redux/actions/index";
+import { sort } from "../../redux/actions/index";
+import s from "./stylesSort.module.css";
 
-export default function OrderName() {
+export default function SortName() {
   const data = useSelector((state) => state.dogs);
   const dispatch = useDispatch();
 
@@ -15,7 +16,7 @@ export default function OrderName() {
         return textA < textB ? -1 : textA > textB ? 1 : 0;
       });
 
-      dispatch(order(ascendente));
+      dispatch(sort(ascendente));
     } else if (e.target.value === "handleFilterDes") {
       const ascendente = data.sort(function (a, b) {
         var textA = a.name;
@@ -24,16 +25,16 @@ export default function OrderName() {
       });
 
       let descendente = ascendente.reverse();
-      dispatch(order(descendente));
+      dispatch(sort(descendente));
     } else return null;
   };
 
   return (
-    <div>
+    <div className={`${s.div}`}>
       <label>
-        Ordenar por nombre
-        <select onChange={selectChange}>
-          <option value={"nothing"}>Seleccionar</option>
+        Sort by alphabet
+        <select onChange={selectChange} className={`${s.select}`}>
+          <option value={"nothing"}>Select</option>
           <option value={"handleFilterAsc"}>A-Z</option>
           <option value={"handleFilterDes"}>Z-A</option>
         </select>

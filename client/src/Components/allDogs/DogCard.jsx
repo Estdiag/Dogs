@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.module.css";
+import s from "./styleCard.module.css";
 import { Link } from "react-router-dom";
 
 export default function DogCard({
@@ -11,15 +11,17 @@ export default function DogCard({
   weightMax,
 }) {
   return (
-    <div className="card">
-      <img src={img} alt="imagen de un perro" />
-      <Link to={`/dogDetail/${Id}`}>
-        <h1> {name}</h1>
+    <div className={`${s.card}`}>
+      <img src={img} alt="img" />
+      <Link to={`/dogDetail/${Id}`} className={`${s.h1}`}>
+        <h1 className={`${s.h1}`}> {name}</h1>
       </Link>
-      <h2>Temperamento: {temperament}</h2>
-      <h2>
-        Peso: {weightMin} - {weightMax}
-      </h2>
+      <p>
+        <b>Temperaments:</b> {temperament}
+      </p>
+      <p>
+        <b>Weight:</b> {weightMin} - {weightMax}
+      </p>
     </div>
   );
 }

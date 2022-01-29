@@ -1,0 +1,39 @@
+.container {
+  background-color: rgb(244, 223, 186);
+  width: 50%;
+  height: auto;
+  margin-left: 25%;
+  margin-top: 3%;
+  border: rgb(254, 241, 230) solid 1px;
+  border-radius: 1.5rem;
+}
+
+.img {
+  margin-top: 1%;
+  margin-left: 60px;
+  margin-right: 50px;
+  width: 75%;
+  height: 50%;
+  position: relative;
+  font-size: 25px;
+  line-height: 0.5em;
+}
+
+.p {
+  position: relative;
+  font-size: 25px;
+  line-height: 0.5em;
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+.button {
+  margin-top: 1px;
+  margin-left: 95%;
+  font-family: Dongle;
+  font-size: 25px;
+  background-color: transparent;
+  border-radius: 0px;
+  border-color: transparent;
+  cursor: pointer;
+}

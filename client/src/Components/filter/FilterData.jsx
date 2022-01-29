@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { getDogsApi, getDogsDb } from "../../redux/actions/index";
+import s from "./stylesFilter.module.css";
 
 function FilterData() {
   const dispatch = useDispatch();
@@ -13,11 +14,11 @@ function FilterData() {
     }
   };
   return (
-    <div>
+    <div className={`${s.div}`}>
       <label>
-        Filtrar por proviene data
-        <select onChange={(e) => handleChange(e)}>
-          <option>Seleccionar</option>
+        The data comes from:
+        <select className={`${s.select}`} onChange={(e) => handleChange(e)}>
+          <option>Select</option>
           <option value={"api"}>Api</option>
           <option value={"db"}>DB</option>
         </select>

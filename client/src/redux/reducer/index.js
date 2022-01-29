@@ -2,7 +2,7 @@ import {
   FILTER,
   GET_ALL_DOGS,
   GET_DOG,
-  ORDER,
+  SORT,
   GET_ID_DOG,
   GET_TEMPERAMENTS,
   GET_DOGS_API,
@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
         dogs: action.payload,
       };
 
-    case ORDER:
+    case SORT:
       return {
         ...state,
         dogs: [...action.payload],
