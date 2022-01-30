@@ -82,12 +82,14 @@ export default function AllDog() {
     <div>
       {currentItems &&
         currentItems.map((d) => {
+          // console.log(d.temperaments[0].name);
           return (
             <DogCard
               Id={d.Id}
               name={d.name}
               img={d.img}
               temperament={d.temperament}
+              temperaments={d.temperaments}
               weightMin={d.weightMin}
               weightMax={d.weightMax}
               key={d.Id}

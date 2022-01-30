@@ -27,11 +27,15 @@
   float: left;
   margin-left: 10.5%;
 }
-.span {
+.err {
   font-family: Dongle;
   font-size: 25px;
   color: red;
   margin-left: 30%;
+}
+.temp {
+  font-family: Dongle;
+  font-size: 25px;
 }
 .button {
   margin-left: 25%;

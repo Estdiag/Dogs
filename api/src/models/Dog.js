@@ -15,6 +15,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        set(value) {
+          let value1 = value.toLowerCase();
+          let value2 = value1.charAt(0).toUpperCase() + value1.slice(1);
+          this.setDataValue("name", value2);
+        },
       },
       weightMin: {
         type: DataTypes.STRING,

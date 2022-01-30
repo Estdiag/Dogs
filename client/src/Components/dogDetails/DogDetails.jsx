@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIdDog } from "../../redux/actions/index";
 import { useParams, useNavigate } from "react-router-dom";
-import NavBar from "../navBar/NavBar";
 
 import s from "./stylesDetails.module.css";
 
@@ -19,9 +18,11 @@ export default function DogDetails() {
     dispatch(getIdDog(Id));
   }, []);
 
+  const temp = [];
+  dog.temperaments?.map((t) => temp.push(t.name));
+  let temps = temp.toString();
   return (
     <div>
-      <NavBar />
       <div className={`${s.container}`}>
         <button
           className={`${s.button}`}
@@ -35,7 +36,7 @@ export default function DogDetails() {
         <img src={dog.img} alt={`imag ${dog.name}`} className={`${s.img}`} />
         <h1 className={`${s.img}`}> {dog.name}</h1>
         <p>
-          <b>Temperaments:</b> {dog.temperament}
+          <b>Temperaments:</b> {dog.temperament ? dog.temperament : temps}
         </p>
         <p>
           <b>Weigth:</b> {dog.weightMin} - {dog.weightMax} KG

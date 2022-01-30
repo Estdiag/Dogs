@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Form from "./Form";
 import { Link } from "react-router-dom";
 import s from "./stylesCreate.module.css";
+import { searchExis, remove } from "./functionCreate";
 
 const CreateDog = () => {
   let obj = {
@@ -19,6 +20,7 @@ const CreateDog = () => {
   };
   let dispatch = useDispatch();
   const AllTemperaments = useSelector((state) => state.temperaments);
+  const allDogs = useSelector((state) => state.dogs);
 
   useEffect(() => {
     dispatch(getTemperaments());
@@ -33,10 +35,21 @@ const CreateDog = () => {
 
   const loadTemperament = (e) => {
     let temperaments = [...state.temperament];
-    if (!temperaments.includes(e.target.value)) {
+    if (
+      !temperaments.includes(e.target.value) &&
+      e.target.value !== "nothing"
+    ) {
       temperaments.push(e.target.value);
       setState({ ...state, temperament: temperaments });
     } else return null;
+  };
+  let buscar = searchExis(allDogs, state.name);
+
+  let deleteTem = (e) => {
+    setState({
+      ...state,
+      temperament: remove(state.temperament, e.target.value),
+    });
   };
 
   const handleSubmit = (e) => {
@@ -102,6 +115,10 @@ const CreateDog = () => {
     if (state.img === "") {
       setError("add an image");
       return null;
+    }
+    if (buscar !== undefined) {
+      alert("Breed already exists, try adding another");
+      setState(obj);
     } else {
       setError("");
       dispatch(createDog(state));
@@ -186,7 +203,7 @@ const CreateDog = () => {
           value={state.temperament}
           name="temperament"
         >
-          <option>Select</option>
+          <option value="nothing">Select</option>
           {AllTemperaments.map((t) => {
             return (
               <option key={t.id} value={t.temperament}>
@@ -198,13 +215,17 @@ const CreateDog = () => {
       </label>
       <br />
       {state.temperament.map((t, index) => {
-        return <span key={index}> {t}, </span>;
+        return (
+          <button className={s.temp} key={index} onClick={deleteTem} value={t}>
+            {t},
+          </button>
+        );
       })}
 
-      {!error ? null : <span className={s.span}>{error}</span>}
+      {!error ? null : <span className={s.err}>{error}</span>}
       <br />
       <Link to="/home">
-        <button className={s.button}>Cancel</button>
+        <button className={s.button}>Clear</button>
       </Link>
       <button onClick={handleSubmit} className={s.button}>
         Add

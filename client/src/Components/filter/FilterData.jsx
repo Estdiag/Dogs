@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getDogsApi, getDogsDb } from "../../redux/actions/index";
+import { getAllDogs, getDogsApi, getDogsDb } from "../../redux/actions/index";
 import s from "./stylesFilter.module.css";
 
 function FilterData() {
@@ -11,6 +11,8 @@ function FilterData() {
       dispatch(getDogsApi());
     } else if (e.target.value === "db") {
       dispatch(getDogsDb());
+    } else {
+      dispatch(getAllDogs());
     }
   };
   return (
