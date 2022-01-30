@@ -17,16 +17,20 @@ router.get(DOGS, async (req, res) => {
   const { name } = req.query;
 
   const totalDogs = await getAllInfo();
-  if (name) {
-    let dog = totalDogs.filter((d) =>
-      d.name.toUpperCase().includes(name.toUpperCase())
-    );
-    if (dog.length > 0) res.json(dog);
-    else {
-      return res.status(404).json("No pudimos encontrar el perrito que buscas");
+  try {
+    if (name) {
+      let dog = totalDogs.filter((d) =>
+        d.name.toUpperCase().includes(name.toUpperCase())
+      );
+      if (dog.length > 0) res.json(dog);
+      else {
+        return res.status(200).send(totalDogs);
+      }
+    } else {
+      res.status(200).send(totalDogs);
     }
-  } else {
-    res.status(200).send(totalDogs);
+  } catch (err) {
+    return err;
   }
 });
 
@@ -39,9 +43,6 @@ router.get(`${DOGS}/temperament`, async (req, res) => {
         d.temperament.toUpperCase().includes(temperament.toUpperCase())
       );
       if (dog.length > 0) res.json(dog);
-      else {
-        return res.status(404).json("sin resultado");
-      }
     } else {
       res.status(200).send(totalDogs);
     }

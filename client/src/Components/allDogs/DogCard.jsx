@@ -9,13 +9,9 @@ export default function DogCard({
   temperament,
   weightMin,
   weightMax,
-  temperaments,
 }) {
   const temp = [];
-  temperaments?.map((t) => temp.push(t.name));
-  let temps = temp.toString();
-  console.log(temps);
-  console.log(temperament);
+
   return (
     <div className={`${s.card}`}>
       <img src={img} alt="img" />
@@ -24,7 +20,7 @@ export default function DogCard({
       </Link>
       <p>
         <b>Temperaments: </b>
-        {temperament ? temperament : temps}
+        {temperament}
       </p>
       <p>
         <b>Weight:</b> {weightMin} - {weightMax}

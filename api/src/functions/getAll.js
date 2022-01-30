@@ -51,13 +51,28 @@ const infoDb = async () => {
       },
     ],
   });
-  return dbInfo;
+  let dog = [];
+
+  dbInfo?.map((d) =>
+    dog.push({
+      Id: d.Id,
+      img: d.img,
+      name: d.name,
+      weightMin: d.weightMin,
+      weightMax: d.weightMax,
+      heightMin: d.heightMin,
+      heightMax: d.heightMax,
+      lifeSpanMin: d.lifeSpanMin,
+      lifeSpanMax: d.lifeSpanMax,
+      temperament: d.temperaments.map((t) => ` ${t.name}`).toString(),
+    })
+  );
+  return dog;
 };
 
 async function getAllInfo() {
   const dbInfom = await infoDb();
   const apiInfom = await infoApi();
-
   return dbInfom.concat(apiInfom);
 }
 

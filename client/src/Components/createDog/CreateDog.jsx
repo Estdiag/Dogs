@@ -225,7 +225,7 @@ const CreateDog = () => {
       {!error ? null : <span className={s.err}>{error}</span>}
       <br />
       <Link to="/home">
-        <button className={s.button}>Clear</button>
+        <button className={s.button}>Cancel</button>
       </Link>
       <button onClick={handleSubmit} className={s.button}>
         Add

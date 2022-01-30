@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sort } from "../../redux/actions/index";
+import { getAllDogs, sort } from "../../redux/actions/index";
 import s from "./stylesSort.module.css";
 
 export default function SortName() {
@@ -26,7 +26,7 @@ export default function SortName() {
 
       let descendente = ascendente.reverse();
       dispatch(sort(descendente));
-    } else return null;
+    } else dispatch(getAllDogs());
   };
 
   return (

@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
         set(value) {
-          let value1 = value.toLowerCase();
+          let value1 = value.toLowerCase().trim();
           let value2 = value1.charAt(0).toUpperCase() + value1.slice(1);
           this.setDataValue("name", value2);
         },
