@@ -5,13 +5,13 @@ function ErrorPage() {
   let navigate = useNavigate();
   return (
     <div>
-      <h2>Pagina no encontrada</h2>
+      <h2>not found </h2>
       <button
         onClick={() => {
           navigate("/home");
         }}
       >
-        Volver al inicio
+        Back to home
       </button>
     </div>
   );

@@ -10,8 +10,6 @@ export default function DogCard({
   weightMin,
   weightMax,
 }) {
-  const temp = [];
-
   return (
     <div className={`${s.card}`}>
       <img src={img} alt="img" />

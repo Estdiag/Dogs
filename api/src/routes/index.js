@@ -85,7 +85,7 @@ router.get(`${DOGS}/:id`, async (req, res) => {
 
 router.get(TEMPERAMENT, async (req, res) => {
   const data = await temperApi();
-  const unique = [...new Set(data)];
+  // const unique = [...new Set(data)];
 
   data.forEach((e) => {
     if (e) {
@@ -121,9 +121,8 @@ router.post(DOGS, async (req, res) => {
       lifeSpanMin,
       lifeSpanMax,
       img,
-      temperament,
     });
-    console.log(newDog);
+
     newDog.addTemperament(
       await Temperament.findAll({
         where: { name: temperament },

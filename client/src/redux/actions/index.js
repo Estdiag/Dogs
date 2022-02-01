@@ -76,17 +76,3 @@ export function createDog(body) {
     return data;
   };
 }
-
-// export async function createDog(body) {
-//   return fetch("http://localhost:3001/dogs", {
-//     method: "POST",
-//     mode: "cors",
-
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(body),
-//   })
-//     .then((request) => request)
-//     .catch((error) => console.log(error));
-// }

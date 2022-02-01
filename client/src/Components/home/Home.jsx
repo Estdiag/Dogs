@@ -10,12 +10,6 @@ import { useDispatch } from "react-redux";
 import { getAllDogs } from "../../redux/actions/index.js";
 
 function Home() {
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    dispatch(getAllDogs());
-  };
-
   return (
     <div className={`${s.contenedor}`}>
       <NavBar />
@@ -23,7 +17,7 @@ function Home() {
         <FilterTemperament />
         <FilterData />
       </div>
-      <button className={`${s.button}`}>remove filters</button>
+
       <div>
         <SortName />
         <SortWeight />

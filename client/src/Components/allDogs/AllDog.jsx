@@ -50,9 +50,7 @@ export default function AllDog() {
       return null;
     }
   });
-  const handleTemperaments = () => {
-    dispatch(getTemperaments());
-  };
+
   const handleNextbtn = () => {
     setCurrentPage(currentPage + 1);
     if (currentPage + 1 > maxPageNumberLimit) {
@@ -67,16 +65,6 @@ export default function AllDog() {
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
   };
-
-  let pageIncrementBtn = null;
-  if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <li onClick={handleNextbtn}>&hellip;</li>;
-  }
-
-  let pageDecrementBtn = null;
-  if (pages.length > maxPageNumberLimit) {
-    pageDecrementBtn = <li onClick={handlePrevbtn}>&hellip;</li>;
-  }
 
   return (
     <div>
@@ -103,9 +91,7 @@ export default function AllDog() {
             Prev
           </button>
         </li>
-        {pageDecrementBtn}
         {renderPageNumbers}
-        {pageIncrementBtn}
         <li>
           <button
             onClick={handleNextbtn}

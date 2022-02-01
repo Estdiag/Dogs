@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sort } from "../../redux/actions/index";
+import { getAllDogs, sort } from "../../redux/actions/index";
 import s from "./stylesSort.module.css";
 
 function SortWeight() {
@@ -23,7 +23,7 @@ function SortWeight() {
         return weightA < weightB ? -1 : weightA > weightB ? 1 : 0;
       });
       dispatch(sort(less));
-    } else return null;
+    } else dispatch(getAllDogs());
   };
 
   return (

@@ -16,7 +16,6 @@ function SearchBar() {
       setErr("");
     }
   };
-  console.log(allDogs.length);
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -29,7 +28,7 @@ function SearchBar() {
     handleErr();
     setName("");
   };
-  console.log(allDogs.length);
+
   return (
     <div className={`${s.searchbar}`}>
       <input value={name} onChange={(e) => handleInputChange(e)} />

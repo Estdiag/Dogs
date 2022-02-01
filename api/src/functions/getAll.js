@@ -1,5 +1,3 @@
-// const { Dog } = require("../models/Dog.js");
-// const { Temperament } = require("../models/Temperament.js");
 const axios = require("axios");
 const { Dog, Temperament } = require("../db");
 const { api_key } = process.env;
@@ -9,6 +7,7 @@ const infoApi = async () => {
     const apiUrl = await axios.get(
       `https://api.thedogapi.com/v1/breeds?api_key=${api_key}`
     );
+
     const apiInfo = await apiUrl.data.map((dog) => {
       const weight1 = dog.weight.metric
         ?.replace(/\s+/g, "")

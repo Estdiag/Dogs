@@ -33,7 +33,7 @@ export default function DogDetails() {
           X
         </button>
 
-        <img src={dog.img} alt={`imag ${dog.name}`} className={`${s.img}`} />
+        <img src={dog.img} alt={`img ${dog.name}`} className={`${s.img}`} />
         <h1 className={`${s.img}`}> {dog.name}</h1>
         <p>
           <b>Temperaments:</b> {dog.temperament ? dog.temperament : temps}
@@ -45,7 +45,7 @@ export default function DogDetails() {
           <b>Heigth:</b> {dog.heightMin} - {dog.heightMax} CM
         </p>
         <p>
-          <b>Life span:</b> {dog.lifeSpanMin} - {dog.lifeSpanMax}
+          <b>Life span:</b> {dog.lifeSpanMin} - {dog.lifeSpanMax} years
         </p>
       </div>
     </div>
