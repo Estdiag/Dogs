@@ -3,13 +3,18 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./stylesPag.css";
 import DogCard from "./DogCard";
-import { getAllDogs, getTemperaments } from "../../redux/actions/index";
+import {
+  getAllDogs,
+  getIdDog,
+  getTemperaments,
+} from "../../redux/actions/index";
 
 export default function AllDog() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllDogs());
     dispatch(getTemperaments());
+    dispatch(getIdDog(0));
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);

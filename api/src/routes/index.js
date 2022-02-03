@@ -23,9 +23,7 @@ router.get(DOGS, async (req, res) => {
         d.name.toUpperCase().includes(name.toUpperCase())
       );
       if (dog.length > 0) res.json(dog);
-      else {
-        return res.status(200).send(totalDogs);
-      }
+      else res.json(totalDogs);
     } else {
       res.status(200).send(totalDogs);
     }
@@ -73,6 +71,7 @@ router.get(`${DOGS}/:id`, async (req, res) => {
   const { id } = req.params;
   const totalDogs = await getAllInfo();
   const dog = totalDogs.find((d) => d.Id == id);
+  console.log(id);
 
   if (dog) {
     res.json(dog);
@@ -85,7 +84,6 @@ router.get(`${DOGS}/:id`, async (req, res) => {
 
 router.get(TEMPERAMENT, async (req, res) => {
   const data = await temperApi();
-  // const unique = [...new Set(data)];
 
   data.forEach((e) => {
     if (e) {
@@ -130,6 +128,7 @@ router.post(DOGS, async (req, res) => {
     );
     res.status(202).send("Perrito creado exitosamente");
   } catch (err) {
+    console.log(err);
     res.status(404).send(`No se pudo guardar la información, ${err}`);
   }
 });

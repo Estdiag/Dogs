@@ -11,7 +11,7 @@ function SearchBar() {
   const [err, setErr] = useState("");
 
   const handleErr = () => {
-    if (allDogs.length > 20 && name !== "") setErr("No found");
+    if (allDogs.length > 170) setErr("No found");
     else {
       setErr("");
     }

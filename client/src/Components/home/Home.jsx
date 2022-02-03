@@ -6,8 +6,6 @@ import FilterTemperament from "../filter/FilterTemperament.jsx";
 import FilterData from "../filter/FilterData.jsx";
 import NavBar from "../navBar/NavBar.jsx";
 import s from "./stylesHome.module.css";
-import { useDispatch } from "react-redux";
-import { getAllDogs } from "../../redux/actions/index.js";
 
 function Home() {
   return (
