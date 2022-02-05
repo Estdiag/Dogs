@@ -15,11 +15,15 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        set(value) {
-          let value1 = value.toLowerCase().trim();
-          let value2 = value1.charAt(0).toUpperCase() + value1.slice(1);
-          this.setDataValue("name", value2);
-        },
+        // set(value) {
+        //   let value1 = value.toLowerCase().split(" ");
+        //   let array = [];
+        //   for (let i = 0; i < value1.length; i++) {
+        //     array.push(value1[i].charAt(0).toUpperCase() + value1[i].slice(1));
+        //     str = array.join(" ");
+        //   }
+        //   this.setDataValue("name", str);
+        // },
       },
       weightMin: {
         type: DataTypes.STRING,
@@ -47,6 +51,10 @@ module.exports = (sequelize) => {
       img: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      createdDb: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
     },
     {

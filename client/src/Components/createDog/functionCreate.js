@@ -7,10 +7,20 @@ export function remove(data, name) {
   let newArray = data.filter((t) => t !== name);
   return newArray;
 }
+
+export function changeName(name) {
+  let value1 = name.toLowerCase().split(" ");
+  let array = [];
+  for (let i = 0; i < value1.length; i++) {
+    array.push(value1[i].charAt(0).toUpperCase() + value1[i].slice(1));
+  }
+  return array.join(" ");
+}
 export function validate(props) {
   if (props.name === "") {
     return `Name is required`;
   }
+
   if (props.weightMin === "") {
     return `WeightMin is required`;
   }

@@ -5,8 +5,7 @@ import {
   SORT,
   GET_ID_DOG,
   GET_TEMPERAMENTS,
-  GET_DOGS_API,
-  GET_DOGS_DB,
+  FILTER_DATA,
   GET_DOG_TEMPERAMENT,
 } from "../actions/index";
 
@@ -23,16 +22,28 @@ const reducer = (state = initialState, action) => {
         ...state,
         dogs: action.payload,
       };
-    case GET_DOGS_API:
-      return {
-        ...state,
-        dogs: action.payload,
-      };
-    case GET_DOGS_DB:
-      return {
-        ...state,
-        dogs: action.payload,
-      };
+    case FILTER_DATA:
+      if (action.payload === "db") {
+        let data = [];
+        state.dogs?.map((d) =>
+          d.hasOwnProperty("createdDb") ? data.push(d) : null
+        );
+        return {
+          ...state,
+          dogs: data,
+        };
+      }
+      if (action.payload === "api") {
+        let data = [];
+        state.dogs?.map((d) =>
+          !d.hasOwnProperty("createdDb") ? data.push(d) : null
+        );
+        console.log(data);
+        return {
+          ...state,
+          dogs: data,
+        };
+      }
 
     case GET_DOG:
       return {

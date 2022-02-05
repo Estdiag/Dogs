@@ -18,6 +18,10 @@ export default function DogDetails() {
     dispatch(getIdDog(Id));
   }, []);
 
+  useEffect(() => {
+    return () => dispatch(getIdDog(0));
+  }, []);
+
   const temp = [];
   dog.temperaments?.map((t) => temp.push(t.name));
   let temps = temp.toString();

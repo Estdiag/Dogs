@@ -49,36 +49,15 @@ router.get(`${DOGS}/temperament`, async (req, res) => {
   }
 });
 
-router.get(`${DOGS}/api`, async (req, res) => {
-  try {
-    const dogsApi = await infoApi();
-    res.status(202).send(dogsApi);
-  } catch (err) {
-    return res.status(404).send(err);
-  }
-});
-
-router.get(`${DOGS}/db`, async (req, res) => {
-  try {
-    const dogsdDb = await infoDb();
-    res.status(202).send(dogsdDb);
-  } catch (err) {
-    return res.status(404).send(err);
-  }
-});
-
 router.get(`${DOGS}/:id`, async (req, res) => {
   const { id } = req.params;
   const totalDogs = await getAllInfo();
   const dog = totalDogs.find((d) => d.Id == id);
-  console.log(id);
 
   if (dog) {
     res.json(dog);
   } else {
-    res
-      .status(404)
-      .json("No pudimos encontrar el perrito por el Id que buscas ");
+    res.status(404).json([]);
   }
 });
 

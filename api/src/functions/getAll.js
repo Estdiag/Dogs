@@ -64,6 +64,7 @@ const infoDb = async () => {
       lifeSpanMin: d.lifeSpanMin,
       lifeSpanMax: d.lifeSpanMax,
       temperament: d.temperaments.map((t) => ` ${t.name}`).toString(),
+      createdDb: d.createdDb,
     })
   );
   return dog;
