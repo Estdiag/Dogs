@@ -48,6 +48,23 @@ router.get(`${DOGS}/temperament`, async (req, res) => {
     return err;
   }
 });
+router.get(`${DOGS}/api`, async (req, res) => {
+  try {
+    const dogsApi = await infoApi();
+    res.status(202).send(dogsApi);
+  } catch (err) {
+    return res.status(404).send(err);
+  }
+});
+
+router.get(`${DOGS}/db`, async (req, res) => {
+  try {
+    const dogsdDb = await infoDb();
+    res.status(202).send(dogsdDb);
+  } catch (err) {
+    return res.status(404).send(err);
+  }
+});
 
 router.get(`${DOGS}/:id`, async (req, res) => {
   const { id } = req.params;

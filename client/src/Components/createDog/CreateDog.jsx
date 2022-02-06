@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Form from "./Form";
 import { Link } from "react-router-dom";
 import s from "./stylesCreate.module.css";
-import { searchExis, remove, validate, changeName } from "./functionCreate";
+import { searchExis, remove, validate } from "./functionCreate";
 
 const CreateDog = () => {
   let obj = {
@@ -47,8 +47,6 @@ const CreateDog = () => {
     } else return null;
   };
 
-  let name = changeName(state.name);
-
   let buscar = searchExis(allDogs, state.name);
 
   let deleteTem = (e) => {
@@ -59,14 +57,12 @@ const CreateDog = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setState({ ...state, name: name });
     if (validate(state) === "ok") {
       if (buscar !== undefined) {
         alert("Breed already exists, try adding another");
         setState(obj);
       } else {
         setError("");
-        console.log(state);
         dispatch(createDog(state));
         setState(obj);
         alert("created");

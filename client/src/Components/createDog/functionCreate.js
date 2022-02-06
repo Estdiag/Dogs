@@ -1,5 +1,5 @@
 export function searchExis(data, name) {
-  let find = data.find((d) => d.name == name);
+  let find = data.find((d) => d.name.toUpperCase() == name.toUpperCase());
   return find;
 }
 
@@ -8,14 +8,14 @@ export function remove(data, name) {
   return newArray;
 }
 
-export function changeName(name) {
-  let value1 = name.toLowerCase().split(" ");
-  let array = [];
-  for (let i = 0; i < value1.length; i++) {
-    array.push(value1[i].charAt(0).toUpperCase() + value1[i].slice(1));
-  }
-  return array.join(" ");
-}
+// export function changeName(name) {
+//   let value1 = name.toLowerCase().split(" ");
+//   let array = [];
+//   for (let i = 0; i < value1.length; i++) {
+//     array.push(value1[i].charAt(0).toUpperCase() + value1[i].slice(1));
+//   }
+//   return array.join(" ");
+// }
 export function validate(props) {
   if (props.name === "") {
     return `Name is required`;

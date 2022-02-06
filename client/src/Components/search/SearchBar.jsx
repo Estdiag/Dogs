@@ -8,14 +8,6 @@ function SearchBar() {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
   const [name, setName] = useState("");
-  const [err, setErr] = useState("");
-
-  const handleErr = () => {
-    if (allDogs.length > 170) setErr("No found");
-    else {
-      setErr("");
-    }
-  };
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -25,7 +17,6 @@ function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getDog(name));
-    handleErr();
     setName("");
   };
 
@@ -33,7 +24,6 @@ function SearchBar() {
     <div className={`${s.searchbar}`}>
       <input value={name} onChange={(e) => handleInputChange(e)} />
       <button onClick={(e) => handleSubmit(e)}>Search</button>
-      <span> {err}</span>
     </div>
   );
 }
